@@ -1,0 +1,87 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="professeur_list_view">
+      <field name="name">professeur liste</field>
+      <field name="model">university.professeur</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="f_name"/>
+          <field name="l_name"/>
+          <field name="sexe"/>
+          <field name="email"/>
+        </tree>
+      </field>
+    </record>
+
+     <!-- explicit form view definition -->
+
+    <record model="ir.ui.view" id="professeur_form_view">
+      <field name="name">professeur formulaire</field>
+      <field name="model">university.professeur</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="f_name"/>
+            <field name="l_name"/>
+            <field name="sexe"/>
+            <field name="cin"/>
+            <field name="email"/>
+            <field name="adresse"/>
+            <field name="numero"/>
+            <field name="dateNaissance"/>
+            <field name="departement_id"/>
+          </group>
+          <notebook>
+            <page string="Liste des classes">
+              <field name="classe_ids"/>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="professeur_action_window">
+      <field name="name">professeur window</field>
+      <field name="res_model">university.professeur</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="university.action_server">
+      <field name="name">university server</field>
+      <field name="model_id" ref="model_etudiant_etudiant"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item
+
+    <menuitem name="university" id="university_menu_root"/>
+-->
+    <!-- menu categories -->
+
+    <menuitem name="professeur" id="university_professeur_cat" parent="university_menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Liste des professeurs" id="university_professeur_list" parent="university_professeur_cat"
+              action="professeur_action_window"/>
+<!--
+    <menuitem name="Server to list" id="university" parent="university.menu_2"
+              action="university.action_server"/>
+-->
+  </data>
+</odoo>
